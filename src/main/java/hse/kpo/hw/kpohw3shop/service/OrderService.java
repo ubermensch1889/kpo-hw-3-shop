@@ -7,6 +7,7 @@ import hse.kpo.hw.kpohw3shop.repository.OrderRepository;
 import hse.kpo.hw.kpohw3shop.repository.StationRepository;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Service
 public class OrderService {
     private final OrderRepository orderRepo;
     private final StationRepository stationRepo;
@@ -25,7 +27,7 @@ public class OrderService {
         this.restTemplate = restTemplate;
     }
 
-    public void makeOrder(OrderRequest request) {
+    public void makeOrder(OrderRequest request, int userId) {
         Optional<Station> toStation = stationRepo.findById(request.getToStationId());
         if (toStation.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No such to station");
@@ -41,6 +43,7 @@ public class OrderService {
                 .fromStation(toStation.get())
                 .toStation(toStation.get())
                 .status(Order.Status.CHECK)
+                .userId(userId)
                 .build();
 
         orderRepo.save(order);

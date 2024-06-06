@@ -37,4 +37,7 @@ public class Order {
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private Status status;
+
+    @Column(nullable = false, name = "user_id")
+    private int userId;
 }
