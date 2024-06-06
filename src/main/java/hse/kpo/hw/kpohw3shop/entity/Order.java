@@ -17,7 +17,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    enum Status {
+    public enum Status {
         CHECK,
         SUCCESS,
         REJECTION
