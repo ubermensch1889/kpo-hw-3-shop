@@ -44,7 +44,7 @@ public class OrderService {
 
         Order order = Order.builder()
                 .created(Timestamp.valueOf(LocalDateTime.now()))
-                .fromStation(toStation.get())
+                .fromStation(fromStation.get())
                 .toStation(toStation.get())
                 .status(Order.Status.CHECK)
                 .userId(userId)
@@ -67,7 +67,7 @@ public class OrderService {
                 orderToChange.setStatus(Order.Status.SUCCESS);
             }
             else {
-                orderToChange.setStatus(Order.Status.SUCCESS);
+                orderToChange.setStatus(Order.Status.REJECTION);
             }
 
             orderRepo.save(orderToChange);
