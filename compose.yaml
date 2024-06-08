@@ -1,9 +1,0 @@
-services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=kpo-hw-3-shop'
-      - 'POSTGRES_PASSWORD=password'
-      - 'POSTGRES_USER=erentsen'
-    ports:
-      - '5433:5432'

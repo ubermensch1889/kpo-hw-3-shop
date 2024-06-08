@@ -21,7 +21,8 @@ public class AuthService {
     // Возвращаем Optional<String>, в котором пусто в случае,
     // если пользователя с таким токеном не авторизован, иначе - имя пользователя.
     public Optional<Integer> checkAuthorized(String token) {
-        String url = "http://localhost:8081/check-auth?token={token}";
+        String host = System.getenv("AUTH_host");
+        String url = "http://" + host + ":8081/check-auth?token={token}";
 
         try {
             ResponseEntity<CheckAuthResponse> responseEntity =

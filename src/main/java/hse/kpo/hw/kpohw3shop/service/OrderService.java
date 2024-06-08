@@ -101,7 +101,8 @@ public class OrderService {
     }
 
     private String getUserName(int userId) {
-        String url = "http://localhost:8081/nickname?id={userId}";
+        String host = System.getenv("AUTH_host");
+        String url = "http://" + host + ":8081/nickname?id={userId}";
 
         try {
             ResponseEntity<String> responseEntity =
